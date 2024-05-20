@@ -4,19 +4,21 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
 void main(){
-  runApp(NourshlyApp());
+  runApp(const NourshlyApp());
 }
 
 class NourshlyApp extends StatelessWidget{
+  const NourshlyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        cardTheme: CardTheme(
+        cardTheme: const CardTheme(
           color: Colors.white,
         ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.green,
           elevation: 60,
           unselectedIconTheme: IconThemeData(
@@ -24,62 +26,81 @@ class NourshlyApp extends StatelessWidget{
           )
         )
       ),
-      home: MyClipPtah(),
+      home: const MyClipPtah(),
     );
   }
 }
 
 class MyClipPtah extends StatelessWidget{
+  const MyClipPtah({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        width: 70,
+        height: 70,
+        decoration: BoxDecoration(
+          color: Colors.deepOrange,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Card(
+          elevation: 20,
+          shadowColor: Colors.green,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50)
+          ),
+          color: Colors.deepOrange,
+          child: const Icon(Icons.add, size: 50,color: Colors.white,),
+        ),
+      ),
       body: Stack(
         children: [
-          HomePageBackGround(),
+          const HomePageBackGround(),
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  Container(
                     padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Nourishly", style: TextStyle(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Nourishly", style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w700
+                        ),),
+                        Container(
+                          width: 40,
+                          // child: Text("sdfghj"),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
                             color: Colors.white,
-                            fontSize: 35,
-                            fontWeight: FontWeight.w700
-                          ),),
-                          Container(
-                            width: 40,
-                            // child: Text("sdfghj"),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.white,
-                              image: DecorationImage(
-                                image: AssetImage("assets/images/Nourishly.jpeg"),
-                              )
-                            ),
-                            height: 40,
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/Nourishly.jpeg"),
+                            )
                           ),
-                        ],
-                      ),
+                          height: 40,
+                        ),
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: Container(child: Text(
-                      "Fully Participation in life while keeping diabetes management in check",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    )),
-                  ),
+                  Container(
+                      padding: const EdgeInsets.only(top: 25),
+
+                      child: const Text(
+                    "Fully Participation in life while keeping diabetes management in check",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )),
                   Padding(
                     padding: const EdgeInsets.only(top: 40),
                     child: Wrap(
@@ -87,270 +108,41 @@ class MyClipPtah extends StatelessWidget{
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
                           ],
                         ),
-                        Container(height: 15,),
+                        const SizedBox(height: 15,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
                           ],
                         ),
-                        Container(height: 15,),
+                        const SizedBox(height: 15,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
+
                           ],
                         ),
-                        Container(height: 15,),
+                        const SizedBox(height: 15,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
                           ],
                         ),
-                        Container(height: 15,),
+                        const SizedBox(height: 15,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 175,
-                              height: 175,
-                              child: Card(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage("assets/images/profile.jpeg")
-                                          )
-                                      ),
-                                      width: 80,
-                                      height: 80,
-                                    ),
-                                    Text("Meals", style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
+                            cardWidget("assets/images/profile.jpeg", "Meals"),
                           ],
                         ),
                       ],
@@ -365,96 +157,88 @@ class MyClipPtah extends StatelessWidget{
       bottomNavigationBar: Container(
         height: 80,
         color: Colors.deepOrange,
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 82,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.home_filled, size: 30,color: Colors.white,),
-                  Text(
-                      "Home",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1.3
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              width: 82,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.list, size: 30,color: Colors.white,),
-                  Text(
-                    "Logs",
-                    style: TextStyle(
+            Expanded(
+              child: SizedBox(
+                width: 82,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.home_filled, size: 30,color: Colors.white,),
+                    Text(
+                        "Home",
+                      style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 1.3
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              width: 70,
-              height: 70,
-              decoration: BoxDecoration(
-                color: Colors.deepOrange,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Card(
-                elevation: 20,
-                shadowColor: Colors.green,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)
+                      ),
+                    )
+                  ],
                 ),
-                color: Colors.deepOrange,
-                child: Icon(Icons.add, size: 50,color: Colors.white,),
               ),
             ),
-            Container(
-              width: 82,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.list, size: 30,color: Colors.white,),
-                  Text(
-                    "Logs",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 1.3
-                    ),
-                  )
-                ],
+            Expanded(
+              child: SizedBox(
+                width: 82,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.list, size: 30,color: Colors.white,),
+                    Text(
+                      "Logs",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1.3
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            Container(
-              width: 82,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.list, size: 30,color: Colors.white,),
-                  Text(
-                    "Logs",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 1.3
-                    ),
-                  )
-                ],
+            Spacer(),
+            Expanded(
+              child: SizedBox(
+                width: 82,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.list, size: 30,color: Colors.white,),
+                    Text(
+                      "Logs",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1.3
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                width: 82,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.list, size: 30,color: Colors.white,),
+                    Text(
+                      "Logs",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1.3
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
@@ -463,9 +247,39 @@ class MyClipPtah extends StatelessWidget{
     );
   }
 
+  Widget cardWidget(String image, String label) {
+    return Expanded(
+      child: SizedBox(
+        height: 175,
+        child: Card(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(image)
+                    )
+                ),
+                width: 80,
+                height: 80,
+              ),
+              Text(label, style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500
+              ),),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
 }
 
 class HomePageBackGround extends StatelessWidget{
+  const HomePageBackGround({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ClipPath(
